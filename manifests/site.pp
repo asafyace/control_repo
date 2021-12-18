@@ -8,6 +8,9 @@ node 'master.puppet.vm' {
   owner   => 'root'
   }
 }
+node 'minecraft.puppet.vm'{
+  include role::minecraft_server
+}
 
 node /^web/ {
   include role::app_server
