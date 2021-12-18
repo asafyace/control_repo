@@ -1,4 +1,4 @@
-ass minecraft (
+class minecraft (
   $url = 'https://s3.amazonaws.com/Minecraft.Download/versions/1.12.1/minecraft_server.1.12.1.jar',
   $install_dir = '/opt/minecraft'
 ){
@@ -17,9 +17,11 @@ ass minecraft (
     ensure => file,
     content => 'eula=true'
   }
-  file {'/etc/systemd/system/minecraft.service':
+  file {‘/etc/systemd/system/minecraft.service’:
     ensure => file,
-    source => 'puppet:///modules/minecraft/minecraft.service',
+    content => epp(‘minecraft/minecraft.service.epp’, {
+      install_dir => $install_dir,
+    }),
   }
   service { 'minecraft':
     ensure => running,
