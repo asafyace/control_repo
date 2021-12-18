@@ -5,7 +5,7 @@ node default {
     owner   => 'root',
   }
 }
-node 'minetest.puppet.vm': {
+node /^minetest/ {
   include role::minecraft_server
 }
 node /^web/ { 
